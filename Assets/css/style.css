@@ -17,6 +17,7 @@ body {
   border-radius: 50%;
   cursor: pointer;
   background-color: rgb(171, 171, 255);
+  border: none;
 }
 .navbar .change-color-btn .imgcolor {
   width: 40px;
@@ -41,18 +42,36 @@ main .container-counter {
 }
 main .container-counter .più-btn {
   margin: 20px;
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   font-size: 40px;
   cursor: pointer;
+  border-radius: 50px;
+  border: none;
 }
 main .container-counter .totale {
   font-size: 40px;
 }
 main .container-counter .meno-btn {
   margin: 20px;
-  width: 70px;
+  width: 80px;
+  height: 80px;
+  font-size: 40px;
+  cursor: pointer;
+  border-radius: 50px;
+  border: none;
+}
+main .container-reset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .container-reset .reset-btn {
+  margin: 20px;
+  width: auto;
   height: 70px;
   font-size: 40px;
   cursor: pointer;
+  border: none;
+  border-radius: 70px;
 }/*# sourceMappingURL=style.css.map */

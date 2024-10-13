@@ -19,7 +19,7 @@ body{
         border-radius: 50%;
         cursor: pointer;
         background-color: rgb(171, 171, 255);
-      
+        border: none;
         .imgcolor{
             width: 40px;
         }
@@ -47,20 +47,38 @@ main{
         align-items: center;
         .più-btn{
             margin: 20px;
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             font-size: 40px;
             cursor:pointer;
+            border-radius: 50px;
+            border:none;
         }
         .totale{
             font-size: 40px;
         }
         .meno-btn{
             margin: 20px;
-            width: 70px;
+            width: 80px;
+            height: 80px;
+            font-size: 40px;
+            cursor: pointer;
+            border-radius: 50px;
+            border:none;
+        }
+    }
+    .container-reset{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        .reset-btn{
+            margin: 20px;
+            width: auto;
             height: 70px;
             font-size: 40px;
             cursor: pointer;
+            border: none;
+            border-radius: 70px;
         }
     }
 }
