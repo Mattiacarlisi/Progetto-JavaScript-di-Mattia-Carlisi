@@ -1,7 +1,58 @@
+@charset "UTF-8";
 body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   width: 100%;
   overflow-x: hidden;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.navbar .change-color-btn {
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: rgb(171, 171, 255);
+}
+.navbar .change-color-btn .imgcolor {
+  width: 40px;
+}
+
+main .container-meme {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  margin-top: 40px;
+}
+main .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .container-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .container-counter .più-btn {
+  margin: 20px;
+  width: 70px;
+  height: 70px;
+  font-size: 40px;
+  cursor: pointer;
+}
+main .container-counter .totale {
+  font-size: 40px;
+}
+main .container-counter .meno-btn {
+  margin: 20px;
+  width: 70px;
+  height: 70px;
+  font-size: 40px;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
