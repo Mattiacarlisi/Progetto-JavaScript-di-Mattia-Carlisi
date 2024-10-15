@@ -1,3 +1,5 @@
+// schermo giorno notte
+
 let backgroundColorBtn = document.querySelector('#changeColorBtn'); 
 
 backgroundColorBtn.addEventListener('click', function() {
@@ -20,4 +22,66 @@ backgroundColorBtn.addEventListener('click', function() {
         document.querySelector('#totale').style.color = 'black';
         
     }
+});
+
+// funzionamento bottoni
+
+const immagini = [
+    'Assets/img/meme2.jpg',
+    'Assets/img/meme3.jpg',
+    'Assets/img/meme4.jpg',
+    'Assets/img/meme5.jpg',
+    'Assets/img/meme6.jpg',
+    'Assets/img/meme1.jpg',
+];
+
+let piùBtn = document.querySelector('#piùBtn');
+let menoBtn = document.querySelector('#menoBtn');
+let risultato = document.querySelector('#totale');
+let resetBtn = document.querySelector('#resetBtn');
+let memeImg = document.querySelector('#memeImg');
+let currentIndex = 0; 
+
+
+let total;
+
+if (localStorage.getItem('total')) {
+    total = parseInt(localStorage.getItem('total'));  // Se esiste, converte la stringa in numero
+} else {
+    total = 0;  
+}
+
+
+risultato.textContent = total;
+
+
+piùBtn.addEventListener('click', function() {
+    total++;
+    risultato.textContent = total;
+    
+    localStorage.setItem('total', total);
+    
+    memeImg.src = immagini[currentIndex];
+    currentIndex = (currentIndex + 1) % immagini.length; 
+});
+
+
+menoBtn.addEventListener('click', function() {
+    total--;
+    risultato.textContent = total;
+
+    localStorage.setItem('total', total);
+    
+    memeImg.src = immagini[currentIndex];
+    currentIndex = (currentIndex + 1) % immagini.length;
+});
+
+resetBtn.addEventListener('click', function() {
+    total = 0;
+    risultato.textContent = total;
+
+    localStorage.setItem('total', total);
+  
+    memeImg.src = 'Assets/img/meme1.jpg'; 
+    currentIndex = 0; 
 });

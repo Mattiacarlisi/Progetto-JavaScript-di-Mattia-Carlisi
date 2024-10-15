@@ -31,6 +31,12 @@ main .container-meme {
   height: auto;
   margin-top: 40px;
 }
+main .container-meme .meme-img {
+  width: 300px; /* Imposta una larghezza fissa */
+  height: 300px; /* Imposta un'altezza fissa */
+  object-fit: cover; /* Fa sì che l'immagine riempia il box senza distorsioni */
+  border-radius: 10px; /* Facoltativo: angoli arrotondati */
+}
 main .title {
   display: flex;
   justify-content: center;
