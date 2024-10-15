@@ -38,10 +38,10 @@ main{
         margin-top: 40px;
 
         .meme-img {
-            width: 300px; /* Imposta una larghezza fissa */
-            height: 300px; /* Imposta un'altezza fissa */
-            object-fit: cover; /* Fa sì che l'immagine riempia il box senza distorsioni */
-            border-radius: 10px; /* Facoltativo: angoli arrotondati */
+            width: 300px;
+            height: 300px; 
+            object-fit: cover; 
+            border-radius: 10px; 
         }
         
     }
@@ -93,4 +93,20 @@ main{
             background-color: $btncoloronwhite;
         }
     }
+}
+
+@media (max-width: 820px) {
+    main{
+        .container-meme{
+            .meme-img {
+                width: 200px;
+                height: 200px; 
+            }
+            
+        }
+        .title{
+            font-size:30px ;
+        }
+    }
+
 }
