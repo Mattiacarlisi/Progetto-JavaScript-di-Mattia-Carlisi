@@ -1,6 +1,6 @@
 # Counter with Dark Mode
 
-è un'applicazione web semplice che permette di incrementare, decrementare e resettare un contatore. Include anche la possibilità di attivare una modalità notturna, che cambia lo sfondo della pagina in nero. inoltre ogni volta che si incrementa o decrementa ci comparirà un'immagine differente per rendere il counter più divertente e piacevole.
+è un'applicazione web semplice che permette di incrementare, decrementare e resettare un contatore. Include anche la possibilità di attivare una modalità notturna, che cambia lo sfondo della pagina in nero. Inoltre ogni volta che si incrementa o decrementa ci comparirà un'immagine differente per rendere il counter più divertente e piacevole.
 All'interno della cartella `assets` troverai i file CSS, JavaScript e le immagini e le icone utilizzate.
 
 ## Tecnologie Utilizzate
