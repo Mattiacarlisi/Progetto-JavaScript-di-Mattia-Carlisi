@@ -9,6 +9,6 @@ All'interno della cartella `assets` troverai i file CSS, JavaScript e le immagin
 - **SCSS**: Preprocessore CSS per stili modulari e mantenibili.
 - **JavaScript**: Per la logica del contatore e la gestione della modalità notturna.
 
-##Uso
+###Uso
 
 Una volta avviato il progetto, apri il tuo browser e vai all'indirizzo [https://mattiacarlisi.github.io/Progetto-HTML-e-CSS-di-Mattia-Carlisi/index.html#servizi](https://mattiacarlisi.github.io/Progetto-JavaScript-di-Mattia-Carlisi/) per vedere la pagina personale. 
