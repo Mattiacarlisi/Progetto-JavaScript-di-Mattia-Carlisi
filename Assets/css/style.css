@@ -29,7 +29,7 @@ main .container-meme {
   justify-content: center;
   align-items: center;
   height: auto;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 main .container-meme .meme-img {
   width: 300px;
@@ -76,7 +76,7 @@ main .container-reset {
   align-items: center;
 }
 main .container-reset .reset-btn {
-  margin: 15px;
+  margin: 10px;
   width: auto;
   height: 70px;
   font-size: 40px;
