@@ -24,8 +24,29 @@ backgroundColorBtn.addEventListener('click', function() {
     }
 });
 
-// funzionamento bottoni
+// Creazione dinamica dei pulsanti e del display del contatore
+const counterContainer = document.querySelector('#counterContainer');
 
+// Creiamo il pulsante +
+const piùBtn = document.createElement('button');
+piùBtn.textContent = '+';
+piùBtn.classList.add('più-btn');
+
+// Creiamo il display del counter
+const display = document.createElement('p');
+display.classList.add('totale');
+
+// Creiamo il pulsante -
+const menoBtn = document.createElement('button');
+menoBtn.textContent = '-';
+menoBtn.classList.add('meno-btn');
+
+// Aggiungiamo gli elementi creati al container
+counterContainer.appendChild(menoBtn);
+counterContainer.appendChild(display);
+counterContainer.appendChild(piúBtn);
+
+// Gestione del counter
 const immagini = [
     'Assets/img/meme2.jpg',
     'Assets/img/meme3.jpg',
@@ -35,53 +56,40 @@ const immagini = [
     'Assets/img/meme1.jpg',
 ];
 
-let piùBtn = document.querySelector('#piùBtn');
-let menoBtn = document.querySelector('#menoBtn');
-let risultato = document.querySelector('#totale');
-let resetBtn = document.querySelector('#resetBtn');
+let total = localStorage.getItem('total') ? parseInt(localStorage.getItem('total')) : 0;
+let currentIndex = 0;
 let memeImg = document.querySelector('#memeImg');
-let currentIndex = 0; 
 
+// Visualizziamo il valore iniziale
+display.textContent = total;
 
-let total;
-
-if (localStorage.getItem('total')) {
-    total = parseInt(localStorage.getItem('total'));  // Se esiste, converte la stringa in numero
-} else {
-    total = 0;  
-}
-
-
-risultato.textContent = total;
-
-
+// Eventi per incrementare e decrementare il counter
 piùBtn.addEventListener('click', function() {
     total++;
-    risultato.textContent = total;
-    
+    display.textContent = total;
     localStorage.setItem('total', total);
-    
-    memeImg.src = immagini[currentIndex];
-    currentIndex = (currentIndex + 1) % immagini.length; 
-});
 
-
-menoBtn.addEventListener('click', function() {
-    total--;
-    risultato.textContent = total;
-
-    localStorage.setItem('total', total);
-    
+    // Cambiamo l'immagine del meme
     memeImg.src = immagini[currentIndex];
     currentIndex = (currentIndex + 1) % immagini.length;
 });
 
+menoBtn.addEventListener('click', function() {
+    total--;
+    display.textContent = total;
+    localStorage.setItem('total', total);
+
+    // Cambiamo l'immagine del meme
+    memeImg.src = immagini[currentIndex];
+    currentIndex = (currentIndex + 1) % immagini.length;
+});
+
+// Reset del counter
+let resetBtn = document.querySelector('#resetBtn');
 resetBtn.addEventListener('click', function() {
     total = 0;
-    risultato.textContent = total;
-
+    display.textContent = total;
     localStorage.setItem('total', total);
-  
-    memeImg.src = 'Assets/img/meme1.jpg'; 
-    currentIndex = 0; 
+    memeImg.src = 'Assets/img/meme1.jpg';
+    currentIndex = 0;
 });
