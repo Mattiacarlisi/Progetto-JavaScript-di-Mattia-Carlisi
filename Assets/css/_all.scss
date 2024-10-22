@@ -1,37 +1,36 @@
 $btncoloronblack: #00FF00;
 $btncoloronwhite: #F1C40F;
-$font-1: Arial, Helvetica, sans-serif;
 
-
-body{
+body {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     width: 100%;
     overflow-x: hidden;
     background-color: white;
-
 }
-.navbar{
+
+.navbar {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    .change-color-btn{
+
+    .change-color-btn {
         border-radius: 50%;
         cursor: pointer;
         background-color: rgb(171, 171, 255);
         border: none;
-        .imgcolor{
+
+        .imgcolor {
             width: 40px;
         }
-
     }
 }
 
-main{
-    .container-meme{
-        display:flex;
+main {
+    .container-meme {
+        display: flex;
         justify-content: center;
         align-items: center;
         height: auto;
@@ -43,29 +42,29 @@ main{
             object-fit: cover; 
             border-radius: 10px; 
         }
+    }
+
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container-counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         
-    }
-    .title{
-        display:flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .container-counter{
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        .più-btn{
+        .piu-btn {
             margin: 20px;
             width: 80px;
             height: 80px;
             font-size: 40px;
-            cursor:pointer;
+            cursor: pointer;
             border-radius: 50px;
-            border:none;
+            border: none;
             background-color: $btncoloronwhite;
-        }
-        .totale{
-            font-size: 40px;
+            
         }
         .meno-btn{
             margin: 20px;
@@ -74,15 +73,22 @@ main{
             font-size: 40px;
             cursor: pointer;
             border-radius: 50px;
-            border:none;
+            border: none;
             background-color: $btncoloronwhite;
         }
+
+        .totale {
+            font-size: 40px;
+            margin: 0 20px; /* Spazio tra il contatore e i pulsanti */
+        }
     }
-    .container-reset{
-        display:flex;
+
+    .container-reset {
+        display: flex;
         justify-content: center;
         align-items: center;
-        .reset-btn{
+
+        .reset-btn {
             margin: 20px;
             width: auto;
             height: 70px;
@@ -95,19 +101,17 @@ main{
     }
 }
 
-
 @media (max-width: 820px) {
-    main{
-        .container-meme{
+    main {
+        .container-meme {
             .meme-img {
                 width: 200px;
                 height: 200px; 
             }
-            
         }
-        .title{
-            font-size:30px ;
+
+        .title {
+            font-size: 30px;
         }
     }
-
 }
