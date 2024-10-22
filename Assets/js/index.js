@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('counterValue', currentValue);
     };
 
+    
     const resetDisplay = () => {
         display.textContent = '0';
         localStorage.setItem('counterValue', '0');
