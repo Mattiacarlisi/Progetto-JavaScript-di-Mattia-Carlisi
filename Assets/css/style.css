@@ -76,7 +76,7 @@ main .container-reset {
   align-items: center;
 }
 main .container-reset .reset-btn {
-  margin: 10px;
+  margin: 20px;
   width: auto;
   height: 70px;
   font-size: 40px;
