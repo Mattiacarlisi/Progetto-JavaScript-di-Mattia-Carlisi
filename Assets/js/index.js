@@ -1,87 +1,74 @@
-// schermo giorno notte
+document.addEventListener('DOMContentLoaded', () => {
+    // Gestione del tema giorno/notte
+    let backgroundColorBtn = document.querySelector('#changeColorBtn'); 
 
-let backgroundColorBtn = document.querySelector('#changeColorBtn'); 
+    backgroundColorBtn.addEventListener('click', function() {
+        if (document.body.style.backgroundColor === 'white') {  
+            document.body.style.backgroundColor = 'black'; 
+            document.querySelector('#imageBtn').src = 'Assets/icon/sole.png';
+            document.querySelector('h1').style.color = '#FFFF00';
+            document.querySelector('.piu-btn').style.backgroundColor = '#00FF00';
+            document.querySelector('.meno-btn').style.backgroundColor = '#00FF00';
+            document.querySelector('#resetBtn').style.backgroundColor = '#00FF00';
+            document.querySelector('#totale').style.color = 'yellow';     
+        } else {
+            document.body.style.backgroundColor = 'white';  
+            document.querySelector('#imageBtn').src = 'Assets/icon/luna.png';
+            document.querySelector('h1').style.color = 'black';
+            document.querySelector('.piu-btn').style.backgroundColor = '#F1C40F';
+            document.querySelector('.meno-btn').style.backgroundColor = '#F1C40F';
+            document.querySelector('#resetBtn').style.backgroundColor = '#F1C40F';
+            document.querySelector('#totale').style.color = 'black'; 
+        }
+    });
 
-backgroundColorBtn.addEventListener('click', function() {
-    if (document.body.style.backgroundColor === 'white') {  
-        document.body.style.backgroundColor = 'black'; 
-        document.querySelector('#imageBtn').src = 'Assets/icon/sole.png'
-        document.querySelector('h1').style.color = '#FFFF00';
-        document.querySelector('#piùBtn').style.backgroundColor = '#00FF00';
-        document.querySelector('#menoBtn').style.backgroundColor = '#00FF00';
-        document.querySelector('#resetBtn').style.backgroundColor = '#00FF00';
-        document.querySelector('#totale').style.color = '#FFFF00';
-        
-    } else {
-        document.body.style.backgroundColor = 'white';  
-        document.querySelector('#imageBtn').src = 'Assets/icon/luna.png'
-        document.querySelector('h1').style.color = 'black';
-        document.querySelector('#piùBtn').style.backgroundColor = '#F1C40F';
-        document.querySelector('#menoBtn').style.backgroundColor = '#F1C40F';
-        document.querySelector('#resetBtn').style.backgroundColor = '#F1C40F';
-        document.querySelector('#totale').style.color = 'black';
-        
-    }
-});
+    // Funzionamento counter
+    let counterContainer = document.querySelector('#counterContainer');
 
-// funzionamento bottoni
+    const piuBtn = document.createElement('button');
+    piuBtn.textContent = '+';
+    piuBtn.classList.add('piu-btn');
+    piuBtn.dataset.action = 'increment';
 
-const immagini = [
-    'Assets/img/meme2.jpg',
-    'Assets/img/meme3.jpg',
-    'Assets/img/meme4.jpg',
-    'Assets/img/meme5.jpg',
-    'Assets/img/meme6.jpg',
-    'Assets/img/meme1.jpg',
-];
+    const menoBtn = document.createElement('button');
+    menoBtn.textContent = '-';
+    menoBtn.classList.add('meno-btn');
+    menoBtn.dataset.action = 'decrement';
 
-let piùBtn = document.querySelector('#piùBtn');
-let menoBtn = document.querySelector('#menoBtn');
-let risultato = document.querySelector('#totale');
-let resetBtn = document.querySelector('#resetBtn');
-let memeImg = document.querySelector('#memeImg');
-let currentIndex = 0; 
+    const display = document.createElement('p');
+    display.id = 'totale';
+    display.classList.add('totale');
 
+    let savedValue = localStorage.getItem('counterValue') || '0';
+    display.textContent = savedValue;
 
-let total;
+    counterContainer.appendChild(menoBtn);
+    counterContainer.appendChild(display);
+    counterContainer.appendChild(piuBtn);
 
-if (localStorage.getItem('total')) {
-    total = parseInt(localStorage.getItem('total'));  // Se esiste, converte la stringa in numero
-} else {
-    total = 0;  
-}
+    const resetBtn = document.querySelector('#resetBtn');
 
+    const updateDisplay = (increment) => {
+        let currentValue = parseInt(display.textContent);
+        currentValue += increment;
+        display.textContent = currentValue;
 
-risultato.textContent = total;
+        localStorage.setItem('counterValue', currentValue);
+    };
 
+    const resetDisplay = () => {
+        display.textContent = '0';
+        localStorage.setItem('counterValue', '0');
+    };
 
-piùBtn.addEventListener('click', function() {
-    total++;
-    risultato.textContent = total;
-    
-    localStorage.setItem('total', total);
-    
-    memeImg.src = immagini[currentIndex];
-    currentIndex = (currentIndex + 1) % immagini.length; 
-});
+    counterContainer.addEventListener('click', (e) => {
+        const action = e.target.dataset.action;
+        if (action === 'increment') {
+            updateDisplay(1);
+        } else if (action === 'decrement') {
+            updateDisplay(-1);
+        }
+    });
 
-
-menoBtn.addEventListener('click', function() {
-    total--;
-    risultato.textContent = total;
-
-    localStorage.setItem('total', total);
-    
-    memeImg.src = immagini[currentIndex];
-    currentIndex = (currentIndex + 1) % immagini.length;
-});
-
-resetBtn.addEventListener('click', function() {
-    total = 0;
-    risultato.textContent = total;
-
-    localStorage.setItem('total', total);
-  
-    memeImg.src = 'Assets/img/meme1.jpg'; 
-    currentIndex = 0; 
+    resetBtn.addEventListener('click', resetDisplay);
 });
