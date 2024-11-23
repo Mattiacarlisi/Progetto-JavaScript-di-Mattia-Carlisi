@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return element;
     };
 
-    // Stato iniziale
+
     const imageList = [
         'Assets/img/meme1.jpg',
         'Assets/img/meme2.jpg',
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentImageIndex = parseInt(localStorage.getItem('imageIndex')) || 0;
     let counterValue = parseInt(localStorage.getItem('counterValue')) || 0;
 
-    // Elementi principali
+
     const counterContainer = document.querySelector('#counterContainer');
     const display = createElement('p', { className: 'totale', innerHTML: counterValue, attributes: { id: 'totale' } });
     counterContainer.append(
@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         createElement('button', { className: 'piu-btn', innerHTML: '+', attributes: { 'data-action': 'increment' } })
     );
 
-    // Funzione per aggiornare stato
     const updateState = (increment) => {
         counterValue = increment === null ? 0 : counterValue + increment;
         currentImageIndex = (currentImageIndex + (increment || 0) + imageList.length) % imageList.length;
@@ -51,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#totale').style.color = isDay ? 'yellow' : 'black';
     };
 
-    // Listener unico
     document.body.addEventListener('click', (e) => {
         const action = e.target.dataset.action;
         if (action === 'increment') updateState(1);
@@ -59,7 +57,4 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (e.target.id === 'resetBtn') updateState(null);
         else if (e.target.id === 'changeColorBtn' || e.target.id === 'imageBtn') toggleTheme();
     });
-
-    // Imposta immagine iniziale
-    document.querySelector('#memeImg').src = imageList[currentImageIndex];
 });
