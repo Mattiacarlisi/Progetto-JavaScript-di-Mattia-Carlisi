@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Funzione per creare elementi dinamicamente
-    const createElement = (tag, options = {}) => {
-        const { className = '', innerHTML = '', attributes = {} } = options;
+    const createElement = (tag, { className = '', innerHTML = '', attributes = {} } = {}) => {
         const element = document.createElement(tag);
         if (className) element.className = className;
         if (innerHTML) element.innerHTML = innerHTML;
@@ -9,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return element;
     };
 
-    // Lista delle immagini
+    // Stato iniziale
     const imageList = [
         'Assets/img/meme1.jpg',
         'Assets/img/meme2.jpg',
@@ -18,36 +17,29 @@ document.addEventListener('DOMContentLoaded', () => {
         'Assets/img/meme5.jpg',
         'Assets/img/meme6.jpg',
     ];
+    let currentImageIndex = parseInt(localStorage.getItem('imageIndex')) || 0;
+    let counterValue = parseInt(localStorage.getItem('counterValue')) || 0;
 
-    let currentImageIndex = 0; // Indice dell'immagine corrente
+    // Elementi principali
+    const counterContainer = document.querySelector('#counterContainer');
+    const display = createElement('p', { className: 'totale', innerHTML: counterValue, attributes: { id: 'totale' } });
+    counterContainer.append(
+        createElement('button', { className: 'meno-btn', innerHTML: '-', attributes: { 'data-action': 'decrement' } }),
+        display,
+        createElement('button', { className: 'piu-btn', innerHTML: '+', attributes: { 'data-action': 'increment' } })
+    );
 
-    // Funzione per aggiornare l'immagine
-    const updateImage = () => {
+    // Funzione per aggiornare stato
+    const updateState = (increment) => {
+        counterValue = increment === null ? 0 : counterValue + increment;
+        currentImageIndex = (currentImageIndex + (increment || 0) + imageList.length) % imageList.length;
+        display.textContent = counterValue;
         document.querySelector('#memeImg').src = imageList[currentImageIndex];
-    };
-
-    // Funzione per aggiornare il display del contatore
-    const updateDisplay = (increment) => {
-        let currentValue = parseInt(display.textContent, 10);
-
-        // Aggiorna il valore del contatore
-        currentValue = increment === null ? 0 : currentValue + increment;
-        display.textContent = currentValue;
-
-        // Aggiorna l'indice dell'immagine ciclicamente
-        if (increment !== null) {
-            currentImageIndex = (currentImageIndex + (increment > 0 ? 1 : -1) + imageList.length) % imageList.length;
-        }
-
-        // Aggiorna l'immagine
-        updateImage();
-
-        // Salva nel localStorage
-        localStorage.setItem('counterValue', currentValue);
+        localStorage.setItem('counterValue', counterValue);
         localStorage.setItem('imageIndex', currentImageIndex);
     };
 
-    // Cambio colore dello sfondo e stile
+    // Cambio tema
     const toggleTheme = () => {
         const isDay = document.body.style.backgroundColor === 'white';
         document.body.style.backgroundColor = isDay ? 'black' : 'white';
@@ -59,42 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#totale').style.color = isDay ? 'yellow' : 'black';
     };
 
-    // Inizializzazione degli elementi del contatore
-    const counterContainer = document.querySelector('#counterContainer');
-    const savedValue = localStorage.getItem('counterValue') || '0';
-    currentImageIndex = parseInt(localStorage.getItem('imageIndex'), 10) || 0;
-
-    const menoBtn = createElement('button', {
-        className: 'meno-btn',
-        innerHTML: '-',
-        attributes: { 'data-action': 'decrement' },
-    });
-
-    const display = createElement('p', {
-        className: 'totale',
-        innerHTML: savedValue,
-        attributes: { id: 'totale' },
-    });
-
-    const piuBtn = createElement('button', {
-        className: 'piu-btn',
-        innerHTML: '+',
-        attributes: { 'data-action': 'increment' },
-    });
-
-    const resetBtn = document.querySelector('#resetBtn'); // Reset già presente nel DOM
-
-    counterContainer.append(menoBtn, display, piuBtn);
-
-    // Listener unico per tutti i pulsanti
+    // Listener unico
     document.body.addEventListener('click', (e) => {
         const action = e.target.dataset.action;
-        if (action === 'increment') updateDisplay(1);
-        else if (action === 'decrement') updateDisplay(-1);
-        else if (e.target === resetBtn) updateDisplay(null);
+        if (action === 'increment') updateState(1);
+        else if (action === 'decrement') updateState(-1);
+        else if (e.target.id === 'resetBtn') updateState(null);
         else if (e.target.id === 'changeColorBtn' || e.target.id === 'imageBtn') toggleTheme();
     });
 
-    // Aggiorna immagine iniziale in base al valore salvato
-    updateImage();
+    // Imposta immagine iniziale
+    document.querySelector('#memeImg').src = imageList[currentImageIndex];
 });
