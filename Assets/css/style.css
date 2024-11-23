@@ -28,7 +28,7 @@ main .container-meme {
   justify-content: center;
   align-items: center;
   height: auto;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 main .container-meme .meme-img {
   width: 300px;

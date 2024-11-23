@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createElement('button', { className: 'piu-btn', innerHTML: '+', attributes: { 'data-action': 'increment' } })
     );
 
+
     const updateState = (increment) => {
         counterValue = increment === null ? 0 : counterValue + increment;
         currentImageIndex = (currentImageIndex + (increment || 0) + imageList.length) % imageList.length;
